@@ -1,6 +1,7 @@
 # SecureCodeBox Unix CLI
 
 This Unix CLI script facilitates the creation of scans for SecureCodeBox, focusing on nmap scanning. SecureCodeBox is an open-source tool suite for continuous automated security testing.
+It is important to note that this is not an official CLI for SecureCodeBox. It is just my suggestion to improve the secureCodeBox system.
 
 ## Prerequisites
 
