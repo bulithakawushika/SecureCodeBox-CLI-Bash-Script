@@ -63,6 +63,9 @@ To use the CLI, follow these steps:
 secureCodeBox\CLI: scbctl create scan nmap example.com
 ```
 
+## License
+Free and Open Source
+
 ## Contributing
 
 Contributions are welcome! Feel free to open issues or pull requests.
