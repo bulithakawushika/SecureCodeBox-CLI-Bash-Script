@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Welcome Banner
+echo "________WELCOME TO SECURECODEBOX________"
+
+# Function to create a new scan YAML file
+create_scan() {
+    local scan_type=$1
+    local url=$2
+
+    # Ensure scans folder exists. This is the folder which contain all scan files.
+    mkdir -p scans
+
+    # Generate YAML content
+    local yaml_content="apiVersion: \"execution.securecodebox.io/v1\"
+kind: Scan
+metadata:
+  name: \"$scan_type-$url\"
+spec:
+  scanType: \"$scan_type\"
+  parameters:
+    - $url"
+
+    # Write YAML content to file
+    echo "$yaml_content" > "scans/$scan_type-$url.yaml"
+
+    echo "Scan '$scan_type-$url' created in 'scans' folder. Waiting for run....."
+}
+
+# Main function
+main() {
+    while true; do
+        read -p "secureCodeBox\CLI: " command
+
+        case $command in
+            "scbctl create scan "*)
+                input="${command#*scbctl create scan }"
+                read -r scan_type url <<< "$input"
+                create_scan "$scan_type" "$url"
+                ;;
+            "exit")
+                echo "Exiting..."
+                exit 0
+                ;;
+            *)
+                echo "Invalid command. Usage: scbctl create scan <scan_type> <URL>"
+                ;;
+        esac
+    done
+}
+
+# Run the main function
+main
+
